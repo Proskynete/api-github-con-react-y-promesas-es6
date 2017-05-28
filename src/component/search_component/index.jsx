@@ -16,6 +16,10 @@ const styles = {
 | Create Component
 |*/
 export default class Search extends Component{
+	handleSearch(){
+		const username = document.getElementById('input_search').value
+	}
+
 	render(){
 		return(
 			<div className="row">
@@ -32,7 +36,7 @@ export default class Search extends Component{
 									placeholder="Ingresa el nombre del perfil de github a buscar..." />
 							</div>
 							<div style={styles.button} className="col-md-12">
-								<button id="button_search" className="btn btn-primary btn-block">Buscar!</button>
+								<button onClick={this.handleSearch} id="button_search" className="btn btn-primary btn-block">Buscar!</button>
 							</div>
 						</div>	
 				</div>
