@@ -2,7 +2,7 @@
 | Imports
 */
 import React, { Component } from 'react';
-import Search from '../search_component/index'
+import Content from '../search_component/index'
 
 /*
 | Create Component
@@ -10,9 +10,7 @@ import Search from '../search_component/index'
 export default class App extends Component{
 	render(){
 		return(
-			<div className="container-fluid">
-				<Search />
-			</div>
+			<Content />
 		)
 	}
 }

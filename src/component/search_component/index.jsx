@@ -2,11 +2,16 @@
 | Imports
 */
 import React, { Component } from 'react';
+import UserInfo from '../content_user_component/userInfo'
+import Repositories from '../content_user_component/repositories'
 
 /*
 | Styles
 */
 const styles = {
+	marginTop:{
+		marginTop: '30px'
+	},
 	button:{
 		marginTop: '5px'
 	}
@@ -15,7 +20,7 @@ const styles = {
 /*
 | Create Component
 |*/
-export default class Search extends Component{
+export default class Content extends Component{
 	// Constructor
 	constructor(props) {
 	    super(props)
@@ -54,10 +59,10 @@ export default class Search extends Component{
 		})
 
 		this.getGithubUserInfo(username).then(([userInfo, reposInfo]) => {
-		    console.log('Info del usuario')
-		    console.log(userInfo)
-		    console.log('Info de los repos')
-		    console.log(reposInfo)
+			console.log('Info del usuario')
+			console.log(userInfo)
+			console.log('Repositorios')
+			console.log(reposInfo)
 		}).catch(err => {
 		    console.log(err)
 		})
@@ -103,24 +108,33 @@ export default class Search extends Component{
 
 	render(){
 		return(
-			<div className="row">
-				<div className="text-center">
-					<h3>Buscar información de un perfil de github!</h3>
-				</div>
-				<div className="col-md-6 col-md-offset-3">
-						<div className="form-group">
-							<div className="col-md-12">
-								<input
-									onChange={this.handleOnChange}
-									id="input_search"
-									type="text" 
-									className="form-control"  
-									placeholder="Ingresa el nombre del perfil de github a buscar..." />
-							</div>
-							<div style={styles.button} className="col-md-12">
-								<button onClick={this.handleSearch} id="button_search" disabled={this.state.canSend} className="btn btn-primary btn-block">Buscar!</button>
-							</div>
-						</div>	
+			<div className="container-fluid">
+				<div className="col-md-12">
+					<div className="row">
+						<div className="text-center">
+							<h3>Buscar información de un perfil de github!</h3>
+						</div>
+						<div className="col-md-6 col-md-offset-3">
+								<div className="form-group">
+									<div className="col-md-12">
+										<input
+											onChange={this.handleOnChange}
+											id="input_search"
+											type="text" 
+											className="form-control"  
+											placeholder="Ingresa el nombre del perfil de github a buscar..." />
+									</div>
+									<div style={styles.button} className="col-md-12">
+										<button onClick={this.handleSearch} id="button_search" disabled={this.state.canSend} className="btn btn-primary btn-block">Buscar!</button>
+									</div>
+								</div>	
+						</div>
+					</div>
+
+					<div className="row" style={styles.marginTop}>
+						<UserInfo />
+						<Repositories />
+					</div>
 				</div>
 			</div>
 		)
