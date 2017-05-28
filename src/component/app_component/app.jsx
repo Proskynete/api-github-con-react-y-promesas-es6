@@ -1,13 +1,18 @@
+/*
+| Imports
+*/
 import React, { Component } from 'react';
+import Search from '../search_component/index'
 
+/*
+| Create Component
+*/
 export default class App extends Component{
-	constructor(props){
-		super(props)
-	}
-	
 	render(){
 		return(
-			<div>Hola Mundo!</div>
+			<div className="container-fluid">
+				<Search />
+			</div>
 		)
 	}
 }
