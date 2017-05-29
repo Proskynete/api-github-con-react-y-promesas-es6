@@ -27,8 +27,14 @@ export default class Content extends Component{
 
 	    this.state = {
 	    	canSend: true,
-				userInfo:'',
-				reposInfo: ''
+				userInfoName: '',
+				userInfoLogin: '',
+				userInfoAvatarUrl: '',
+				userInfoBio: '',
+				userInfoBlog: '',
+				userInfoCompany: '',
+				userInfoHtmlUrl: '',
+				userInfoLocation: ''
 	   	}
 
 	    this.getGithubUserInfo = this.getGithubUserInfo.bind(this);
@@ -58,13 +64,17 @@ export default class Content extends Component{
 
 		this.getGithubUserInfo(username).then(([userInfo, reposInfo]) => {
 			let userInfoJSON = JSON.parse(userInfo)
-			let reposInfoJSON = JSON.parse(reposInfo)
-			console.log(userInfoJSON)
-			console.log(reposInfoJSON)
 			this.setState({
-				userInfo:userInfo,
-				reposInfo:userInfo
+				userInfoName: userInfoJSON.name,
+				userInfoLogin: userInfoJSON.login,
+				userInfoAvatarUrl: userInfoJSON.avatar_url,
+				userInfoBio: userInfoJSON.bio,
+				userInfoBlog: userInfoJSON.blog,
+				userInfoCompany: userInfoJSON.company,
+				userInfoHtmlUrl: userInfoJSON.html_url,
+				userInfoLocation: userInfoJSON.location
 			})
+			let reposInfoJSON = JSON.parse(reposInfo)
 		}).catch(err => {
 		    console.log(err)
 		})
@@ -134,8 +144,16 @@ export default class Content extends Component{
 					</div>
 
 					<div className="row" style={styles.marginTop}>
-						<UserInfo userInfo={this.state.userInfo} />
-						<Repositories reposInfo={this.state.reposInfo} />
+						<UserInfo
+							name={this.state.userInfoName}
+							login={this.state.userInfoLogin}
+							avatar_url={this.state.userInfoAvatarUrl}
+							bio={this.state.userInfoBio}
+							blog={this.state.userInfoBlog}
+							company={this.state.userInfoCompany}
+							html_url={this.state.userInfoHtmlUrl}
+							location={this.state.userInfoLocation} />
+						<Repositories />
 					</div>
 				</div>
 			</div>
