@@ -1,7 +1,9 @@
 /*
 | Imports
 */
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import '../../index.css'
+import logo from '../../logo.svg'
 import UserInfo from '../content_user_component/userInfo'
 import Repositories from '../content_user_component/repositories'
 
@@ -14,6 +16,10 @@ const styles = {
 	},
 	button:{
 		marginTop: '5px'
+	},
+	containterImg:{
+		textAlign: 'center',
+		marginTop: '50px'
 	}
 }
 
@@ -62,6 +68,11 @@ export default class Content extends Component{
 	// funcion encargada del evento click del boton
 	handleSearch(){
 		let username = document.getElementById('input_search').value
+		let img = document.getElementById('imageLoader')
+		let containerInfoGithub = document.getElementById('containerInfoGithub')
+
+		img.classList.remove('hidden')
+		containerInfoGithub.classList.add('hidden')
 
 		this.getGithubUserInfo(username).then(([userInfo, reposInfo]) => {
 			let userInfoJSON = JSON.parse(userInfo)
@@ -77,6 +88,8 @@ export default class Content extends Component{
 				userInfoLocation: userInfoJSON.location,
 				reposInfo: reposInfoJSON
 			})
+			img.classList.add('hidden')
+			containerInfoGithub.classList.remove('hidden')
 		}).catch(err => {
 		    console.log(err)
 		})
@@ -145,7 +158,11 @@ export default class Content extends Component{
 						</div>
 					</div>
 
-					<div className="row" style={styles.marginTop}>
+					<div id="imageLoader" className="hidden" style={styles.containterImg}>
+						<img src={logo} className="reactLogo" alt="logo" />
+					</div>
+
+					<div id="containerInfoGithub" className="row hidden" style={styles.marginTop}>
 						<UserInfo
 							name={this.state.userInfoName}
 							login={this.state.userInfoLogin}

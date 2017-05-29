@@ -9,7 +9,7 @@ import Repository from './repository'
 |*/
 export default class Repositories extends Component{
 	handleRepository(){
-		if(this.props.reposInfo){
+		if(this.props.reposInfo.length > 0){
 			return this.props.reposInfo.map(repo => {
 				return (
 					<Repository
@@ -22,7 +22,11 @@ export default class Repositories extends Component{
 				)
 			})
 		}else{
-			return ""
+			return (
+				<article className="col-md-12 text-danger text-center">
+				  <strong>Ups! </strong> Este perfil no tiene nigún proyecto guardado en Github
+				</article>
+			)
 		}
 	}
 
