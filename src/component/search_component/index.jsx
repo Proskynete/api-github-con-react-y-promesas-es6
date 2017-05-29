@@ -25,9 +25,10 @@ export default class Content extends Component{
 	constructor(props) {
 	    super(props)
 
-	    this.state = { 
+	    this.state = {
 	    	canSend: true,
-	    	username: ''
+				userInfo:'',
+				reposInfo: ''
 	   	}
 
 	    this.getGithubUserInfo = this.getGithubUserInfo.bind(this);
@@ -41,8 +42,8 @@ export default class Content extends Component{
 	// funcion encargada de los cambios del input
 	handleOnChange(){
 		if(document.getElementById('input_search').value.length >= 3){
-			this.setState({ 
-				canSend: false 
+			this.setState({
+				canSend: false
 			})
 		}else{
 			this.setState({
@@ -54,15 +55,16 @@ export default class Content extends Component{
 	// funcion encargada del evento click del boton
 	handleSearch(){
 		let username = document.getElementById('input_search').value
-		this.setState({
-			username: username
-		})
 
 		this.getGithubUserInfo(username).then(([userInfo, reposInfo]) => {
-			console.log('Info del usuario')
-			console.log(userInfo)
-			console.log('Repositorios')
-			console.log(reposInfo)
+			let userInfoJSON = JSON.parse(userInfo)
+			let reposInfoJSON = JSON.parse(reposInfo)
+			console.log(userInfoJSON)
+			console.log(reposInfoJSON)
+			this.setState({
+				userInfo:userInfo,
+				reposInfo:userInfo
+			})
 		}).catch(err => {
 		    console.log(err)
 		})
@@ -120,20 +122,20 @@ export default class Content extends Component{
 										<input
 											onChange={this.handleOnChange}
 											id="input_search"
-											type="text" 
-											className="form-control"  
+											type="text"
+											className="form-control"
 											placeholder="Ingresa el nombre del perfil de github a buscar..." />
 									</div>
 									<div style={styles.button} className="col-md-12">
 										<button onClick={this.handleSearch} id="button_search" disabled={this.state.canSend} className="btn btn-primary btn-block">Buscar!</button>
 									</div>
-								</div>	
+								</div>
 						</div>
 					</div>
 
 					<div className="row" style={styles.marginTop}>
-						<UserInfo />
-						<Repositories />
+						<UserInfo userInfo={this.state.userInfo} />
+						<Repositories reposInfo={this.state.reposInfo} />
 					</div>
 				</div>
 			</div>
