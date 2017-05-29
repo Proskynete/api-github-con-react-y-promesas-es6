@@ -48,7 +48,7 @@ export default class Content extends Component{
 
 	// funcion encargada de los cambios del input
 	handleOnChange(){
-		if(document.getElementById('input_search').value.length >= 3){
+		if(document.getElementById('input_search').value.length >= 1){
 			this.setState({
 				canSend: false
 			})
@@ -77,8 +77,6 @@ export default class Content extends Component{
 				userInfoLocation: userInfoJSON.location,
 				reposInfo: reposInfoJSON
 			})
-
-			console.log(reposInfoJSON)
 		}).catch(err => {
 		    console.log(err)
 		})
