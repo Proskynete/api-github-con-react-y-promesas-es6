@@ -7,10 +7,6 @@ import React, { Component } from 'react'
 | Create Component
 |*/
 export default class UserInfo extends Component{
-	constructor(props){
-		super(props)
-	}
-
 	render(){
 		return(
 			<div className="col-md-5 col-md-offset-1">
@@ -22,8 +18,8 @@ export default class UserInfo extends Component{
 					<p>{this.props.bio}</p>
 					<p>{this.props.company}</p>
 					<p>{this.props.location}</p>
-					<p><a href={this.props.html_url} target="_blank">{this.props.html_url}</a></p>
-					<p><a href={this.props.blog} target="_blank">{this.props.blog}</a></p>
+					<p><a href={this.props.html_url} target="_blank" rel="noopener noreferrer">{this.props.html_url}</a></p>
+					<p><a href={this.props.blog} target="_blank" rel="noopener noreferrer">{this.props.blog}</a></p>
 				</section>
 			</div>
 		)
