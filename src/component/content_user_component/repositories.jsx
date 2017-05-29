@@ -31,7 +31,7 @@ export default class Repositories extends Component{
 		return(
 			<div className="col-md-8">
 				<h4 className="text-center">Repositorios</h4>
-				<section>
+				<section className="row">
 					{this.handleRepository()}
 				</section>
 			</div>
